@@ -4,11 +4,17 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
   build:
     name: website build
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
     steps:
 
       - name: Checkout
@@ -42,9 +48,9 @@ jobs:
 
       - name: Deploy
         if: "success() && contains(github.ref, 'master')"
-        uses: JamesIves/github-pages-deploy-action@3.6.2
+        uses: JamesIves/github-pages-deploy-action@4
         with:
-          BRANCH: gh-pages
-          FOLDER: dist
-          CLEAN: true
+          branch: gh-pages
+          folder: dist
+          clean: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
