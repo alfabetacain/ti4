@@ -5,7 +5,7 @@ lazy val root = project
   .enablePlugins(ScalaJSPlugin)
   .settings(
     name         := "ti4",
-    scalaVersion := "3.3.0",
+    scalaVersion := "3.3.1",
     scalacOptions ++= Seq("-encoding", "utf-8", "-deprecation", "-feature"),
     scalaJSUseMainModuleInitializer := true,
     scalaJSLinkerConfig ~= {
