@@ -1,37 +1,23 @@
-package example
+package ti4
 
+import cats.syntax.all._
 import tyrian.*
 import tyrian.Html.*
 import tyrian.SVG.*
 import tyrian.CSS
 import org.scalajs.dom
 import java.util.UUID
+import ti4.model.{ Map => TMap, Unit => TUnit }
 
-final case class Model(map: Model.Map)
+final case class Model(map: TMap)
 
 object Model {
 
-  type TileId = String
-
-  final case class Map(grid: Array[Array[TileId]]) {
-    def tiles: List[TileId]                      = List.empty
-    def neighbours(tileId: TileId): List[TileId] = List.empty
-  }
-
-  object Map {
-
-    def init(): Map = {
-      Map(Array.empty)
-    }
-  }
-
-  final case class Tile(id: TileId = UUID.randomUUID().toString(), neighbours: List[TileId])
-
   def init(): Model = {
-    Model(Map(Array(
-      Array("", "", "", "1", "2", "", ""),
-      Array("3", "4", "5", "6", "7", "8", ""),
-      Array("9", "10", "11", "12", "13", "14", "15")
+    Model(TMap(Array(
+      Array(None, None, None, "1".some, "2".some, None, None),
+      Array("3".some, "4".some, "5".some, "6".some, "7".some, "8".some, None),
+      Array("9".some, "10".some, "11".some, "12".some, "13".some, "14".some, "15".some)
     )))
   }
 }
@@ -71,7 +57,7 @@ object Main extends TyrianApp[Msg, Model] {
     polygon(
       points := s"${x},${y} ${x},${y - size / 2} ${x + size},${y - size} ${x + size * 2},${y - size / 2} ${x + size * 2},${y + size / 2} ${x + size},${y + size} ${x},${y + size / 2}",
       stroke := "black",
-      fill   := (if (isBlank) "none" else "yellow"),
+      fill   := (if (isBlank) "none" else Colors.gray),
     )
   }
 
@@ -82,11 +68,11 @@ object Main extends TyrianApp[Msg, Model] {
       val baseXOffset = baseX + (if (columnIndex % 2 == 0) 0 else polygonSize)
       val baseYOffset = (baseY + polygonSize * columnIndex * 1.5).toInt
       row.zipWithIndex.map {
-        case (tile, rowIndex) if tile != "" =>
+        case (Some(tile), rowIndex) =>
           Option(renderPolygon(
             (baseXOffset + polygonSize * rowIndex * 2).toInt,
             baseYOffset,
-            tile == "",
+            false,
           ))
         case _ => Option.empty
       }.toList.flatten
