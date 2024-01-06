@@ -7,29 +7,39 @@ import tyrian.SVG.*
 import tyrian.CSS
 import org.scalajs.dom
 import java.util.UUID
+import scala.collection.immutable.{ Map => SMap }
 
 type TileId = String
 
-final case class Map(grid: Array[Array[Option[TileId]]]) {
-  def tiles: List[TileId]                      = List.empty
-  def neighbours(tileId: TileId): List[TileId] = List.empty
+final case class Map(
+    grid: Array[Array[Option[TileId]]],
+    tiles: SMap[TileId, Tile],
+    factions: SMap[FactionId, Faction],
+) {
+  def getTileIds: List[TileId]                   = tiles.keys.toList
+  def neighbours(tileId: TileId): List[TileId]   = List.empty
+  def getTile(id: TileId): Option[Tile]          = tiles.get(id)
+  def getFaction(id: FactionId): Option[Faction] = factions.get(id)
 }
 
 object Map {
 
   def init(): Map = {
-    Map(Array.empty)
+    Map(Array.empty, SMap.empty, SMap.empty)
   }
 }
-
-type FactionId
 
 sealed trait Unit {
   def owningFaction: FactionId
 }
 
 object Unit {
-  final case class Ship(owningFaction: FactionId)        extends Unit
+  sealed trait Ship extends Unit
+
+  object Ship {
+    final case class Destroyer(owningFaction: FactionId) extends Ship
+  }
+
   final case class GroundForce(owningFaction: FactionId) extends Unit
 }
 
@@ -41,7 +51,7 @@ enum Anomaly {
 
 final case class Tile(
     id: TileId = UUID.randomUUID().toString(),
-    units: List[Unit],
-    planets: List[Planet],
-    anomaly: Option[Anomaly],
+    units: List[Unit] = List.empty,
+    planets: List[Planet] = List.empty,
+    anomaly: Option[Anomaly] = Option.empty,
 )
