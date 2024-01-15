@@ -13,9 +13,11 @@ stateDiagram-v2
     StrategyPhase --> ActionPhase: Strategies selected
     ActionPhase --> StatusPhase: All players pass
     StatusPhase --> AgendaPhase: Cleanup performed
+    StatusPhase --> StrategyPhase: Custodian token present
     AgendaPhase --> StrategyPhase: Agendas resolved
-    ActionPhase --> [*]: 10 victory points scored
-    StatusPhase --> [*]: 10 victory points scored
+    ActionPhase --> Victory: 10 points scored
+    StatusPhase --> Victory: 10 points scored
+    Victory --> [*]: End game
 ```
 
 ### Strategy phase
