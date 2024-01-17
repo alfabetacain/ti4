@@ -12,9 +12,9 @@ import scala.collection.immutable.{ Map => SMap }
 type TileId = String
 
 final case class Map(
-    grid: Array[Array[Option[TileId]]],
-    tiles: SMap[TileId, Tile],
-    factions: SMap[FactionId, Faction],
+                      grid: Array[Array[Option[TileId]]],
+                      tiles: SMap[TileId, Tile],
+                      factions: SMap[FactionId, Faction],
 ) {
   def getTileIds: List[TileId]                   = tiles.keys.toList
   def neighbours(tileId: TileId): List[TileId]   = List.empty

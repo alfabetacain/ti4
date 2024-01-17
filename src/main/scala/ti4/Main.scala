@@ -1,16 +1,15 @@
 package ti4
 
-import monocle.syntax.all._
-import cats.syntax.all._
+import monocle.syntax.all.*
+import cats.syntax.all.*
 import tyrian.*
 import tyrian.Html.*
 import tyrian.SVG.*
 import tyrian.CSS
 import org.scalajs.dom
+
 import java.util.UUID
-import ti4.model.{ Map => TMap, Tile, Unit => TUnit }
-import ti4.model.TileId
-import ti4.model.Faction
+import ti4.model.{Faction, Tile, TileId, Map as TMap, Unit as TUnit}
 import cats.effect.IO
 
 final case class Model(map: TMap)
