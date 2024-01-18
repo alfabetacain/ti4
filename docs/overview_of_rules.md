@@ -43,9 +43,14 @@ flowchart LR
 
 ## Game Board
 
+The game board consists of all tiles in play. A system tile is considered on the edge if one of its sides is not
+touching another system tile.
+
 ### Tiles
 
-A tile represents an area of the galaxy. It can be either a system or a hyperplane.
+A tile represents an area of the galaxy. It can be either a system or a hyperplane. All the tiles of the game are stored
+as pictures in the [src/main/resource/tiles](src/main/resources/tiles) directory, they were downloaded from
+[this project](https://github.com/KeeganW/ti4/tree/master/public/tiles).
 
 #### System
 
@@ -108,3 +113,5 @@ This tile should be on the edge of the game board.
 - [Learn to play booklet](https://images-cdn.fantasyflightgames.com/filer_public/f3/c6/f3c66512-8e19-4f30-a0d4-d7d75701fd37/ti-k0289_learn_to_playcompressed.pdf)
 - [TI4 Map Generator](https://keeganw.github.io/)
 - [Pictures of Tiles used in above map generator](https://github.com/KeeganW/ti4/tree/master/public/tiles)
+- [Twilight Imperium Comparison](https://docs.google.com/document/d/1pziT_7fKJsQWDvyDOBsybKbqoYF6UThiv-39-TIgRWs/edit)
+- [Twilight Imperium 4 Planets](https://docs.google.com/spreadsheets/d/1IxHdG1hB0CgcXFAB2D_ePcEuYf9VVcYlUte_6hxFtFg/edit#gid=0)
