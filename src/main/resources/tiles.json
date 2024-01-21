@@ -646,6 +646,56 @@
         "front": "tiles/images/33_corneeqResculon.png",
         "back": "tiles/images/blueBack.png"
       }
+    },
+    {
+      "board_game_id": "34",
+      "id": "tile/centauriGral",
+      "planets": [
+        {
+          "id": "planet/centauri",
+          "name": "Centauri",
+          "resources": 1,
+          "influence": 3,
+          "trait": "cultural"
+        },
+        {
+          "id": "planet/gral",
+          "name": "Gral",
+          "resources": 1,
+          "influence": 1,
+          "trait": "industrial",
+          "technologySpeciality": "propulsion"
+        }
+      ],
+      "images": {
+        "front": "tiles/images/34_centauriGral.png",
+        "back": "tiles/images/blueBack.png"
+      }
+    },
+    {
+      "board_game_id": "35",
+      "id": "tile/beregUrtaIv",
+      "planets": [
+        {
+          "id": "planet/bereg",
+          "name": "Bereg",
+          "resources": 3,
+          "influence": 1,
+          "trait": "hazardous"
+        },
+        {
+          "id": "planet/urtaIv",
+          "name": "Urta IV",
+          "resources": 2,
+          "influence": 3,
+          "trait": "hazardous"
+        }
+      ],
+      "images": {
+        "front": "tiles/images/35_beregUrtaIv.png",
+        "back": "tiles/images/blueBack.png"
+      }
     }
+
   ]
 }
