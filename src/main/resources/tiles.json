@@ -1,0 +1,651 @@
+{
+  "tiles": [
+    {
+      "board_game_id": "01",
+      "id": "tile/jord",
+      "planets": [
+        {
+          "id": "planet/jord",
+          "name": "Jord",
+          "resources": 4,
+          "influence": 2
+        }
+      ],
+      "images": {
+        "front": "tiles/images/01_jord.png",
+        "back": "tiles/images/greenBack.png"
+      }
+    },
+    {
+      "board_game_id": "02",
+      "id": "tile/mollPrimus",
+      "planets": [
+        {
+          "id": "planet/mollPrimus",
+          "name": "Moll Primus",
+          "resources": 4,
+          "influence": 1
+        }
+      ],
+      "images": {
+        "front": "tiles/images/02_mollPrimus.png",
+        "back": "tiles/images/greenBack.png"
+      }
+    },
+    {
+      "board_game_id": "03",
+      "id": "tile/darien",
+      "planets": [
+        {
+          "id": "planet/darien",
+          "name": "Darien",
+          "resources": 4,
+          "influence": 4
+        }
+      ],
+      "images": {
+        "front": "tiles/images/03_darien.png",
+        "back": "tiles/images/greenBack.png"
+      }
+    },
+    {
+      "board_game_id": "04",
+      "id": "tile/muaat",
+      "planets": [
+        {
+          "id": "planet/muaat",
+          "name": "Muaat",
+          "resources": 4,
+          "influence": 1
+        }
+      ],
+      "images": {
+        "front": "tiles/images/04_muaat.png",
+        "back": "tiles/images/greenBack.png"
+      }
+    },
+    {
+      "board_game_id": "05",
+      "id": "tile/nestphaar",
+      "planets": [
+        {
+          "id": "planet/nestphaar",
+          "name": "Nestphaar",
+          "resources": 3,
+          "influence": 2
+        }
+      ],
+      "images": {
+        "front": "tiles/images/05_nestphaar.png",
+        "back": "tiles/images/greenBack.png"
+      }
+    },
+    {
+      "board_game_id": "06",
+      "id": "tile/[0.0.0]",
+      "planets": [
+        {
+          "id": "planet/[0.0.0]",
+          "name": "[0.0.0]",
+          "resources": 5,
+          "influence": 0
+        }
+      ],
+      "images": {
+        "front": "tiles/images/06_[0.0.0].png",
+        "back": "tiles/images/greenBack.png"
+      }
+    },
+    {
+      "board_game_id": "07",
+      "id": "tile/winnu",
+      "planets": [
+        {
+          "id": "planet/winnu",
+          "name": "Winnu",
+          "resources": 3,
+          "influence": 4
+        }
+      ],
+      "images": {
+        "front": "tiles/images/07_winnu.png",
+        "back": "tiles/images/greenBack.png"
+      }
+    },
+    {
+      "board_game_id": "08",
+      "id": "tile/mordaiIi",
+      "planets": [
+        {
+          "id": "planet/mordaiIi",
+          "name": "Mordai II",
+          "resources": 4,
+          "influence": 0
+        }
+      ],
+      "images": {
+        "front": "tiles/images/08_mordaiIi.png",
+        "back": "tiles/images/greenBack.png"
+      }
+    },
+    {
+      "board_game_id": "09",
+      "id": "tile/druaaMaaluuk",
+      "planets": [
+        {
+          "id": "planet/druaa",
+          "name": "Druaa",
+          "resources": 3,
+          "influence": 1
+        },
+        {
+          "id": "planet/maaluuk",
+          "name": "Maaluuk",
+          "resources": 0,
+          "influence": 2
+        }
+      ],
+      "images": {
+        "front": "tiles/images/09_druaaMaaluuk.png",
+        "back": "tiles/images/greenBack.png"
+      }
+    },
+    {
+      "board_game_id": "10",
+      "id": "tile/arcPrimeWrenTerra",
+      "planets": [
+        {
+          "id": "planet/arcPrime",
+          "name": "Arc Prime",
+          "resources": 4,
+          "influence": 0
+        },
+        {
+          "id": "planet/wrenTerra",
+          "name": "Wren Terra",
+          "resources": 2,
+          "influence": 1
+        }
+      ],
+      "images": {
+        "front": "tiles/images/10_arcPrimeWrenTerra.png",
+        "back": "tiles/images/greenBack.png"
+      }
+    },
+    {
+      "board_game_id": "11",
+      "id": "tile/lisisIiRagh",
+      "planets": [
+        {
+          "id": "planet/lisisIi",
+          "name": "Lisis II",
+          "resources": 1,
+          "influence": 0
+        },
+        {
+          "id": "planet/ragh",
+          "name": "Ragh",
+          "resources": 2,
+          "influence": 1
+        }
+      ],
+      "images": {
+        "front": "tiles/images/11_lisisIiRagh.png",
+        "back": "tiles/images/greenBack.png"
+      }
+    },
+    {
+      "board_game_id": "12",
+      "id": "tile/jolNar",
+      "planets": [
+        {
+          "id": "planet/jol",
+          "name": "Jol",
+          "resources": 1,
+          "influence": 2
+        },
+        {
+          "id": "planet/nar",
+          "name": "Nar",
+          "resources": 2,
+          "influence": 3
+        }
+      ],
+      "images": {
+        "front": "tiles/images/12_jolNar.png",
+        "back": "tiles/images/greenBack.png"
+      }
+    },
+    {
+      "board_game_id": "13",
+      "id": "tile/quinarraTren'lak",
+      "planets": [
+        {
+          "id": "planet/tren'lak",
+          "name": "Tren'Lak",
+          "resources": 1,
+          "influence": 0
+        },
+        {
+          "id": "planet/quinarra",
+          "name": "Quinarra",
+          "resources": 3,
+          "influence": 1
+        }
+      ],
+      "images": {
+        "front": "tiles/images/13_quinarraTren'lak.png",
+        "back": "tiles/images/greenBack.png"
+      }
+    },
+    {
+      "board_game_id": "14",
+      "id": "tile/archonRenArchonTau",
+      "planets": [
+        {
+          "id": "planet/archonRen",
+          "name": "Archon Ren",
+          "resources": 2,
+          "influence": 3
+        },
+        {
+          "id": "planet/archonTau",
+          "name": "Archon Tau",
+          "resources": 1,
+          "influence": 1
+        }
+      ],
+      "images": {
+        "front": "tiles/images/14_archonRenArchonTau.png",
+        "back": "tiles/images/greenBack.png"
+      }
+    },
+    {
+      "board_game_id": "15",
+      "id": "tile/retillionShalloo",
+      "planets": [
+        {
+          "id": "planet/retillion",
+          "name": "Retillion",
+          "resources": 2,
+          "influence": 3
+        },
+        {
+          "id": "planet/shalloo",
+          "name": "Shalloo",
+          "resources": 1,
+          "influence": 2
+        }
+      ],
+      "images": {
+        "front": "tiles/images/15_retillionShalloo.png",
+        "back": "tiles/images/greenBack.png"
+      }
+    },
+    {
+      "board_game_id": "16",
+      "id": "tile/retillionShalloo",
+      "planets": [
+        {
+          "id": "planet/retillion",
+          "name": "Retillion",
+          "resources": 2,
+          "influence": 3
+        },
+        {
+          "id": "planet/shalloo",
+          "name": "Shalloo",
+          "resources": 1,
+          "influence": 2
+        }
+      ],
+      "images": {
+        "front": "tiles/images/16_retillionShalloo.png",
+        "back": "tiles/images/greenBack.png"
+      }
+    },
+    {
+      "board_game_id": "17",
+      "id": "tile/delta",
+      "wormholes": [
+        "delta"
+      ],
+      "images": {
+        "front": "tiles/images/17_delta.png",
+        "back": "tiles/images/greenBack.png"
+      }
+    },
+    {
+      "board_game_id": "18",
+      "id": "tile/mecatolRex",
+      "planets": [
+        {
+          "id": "planet/mecatolRex",
+          "name": "Mecatol Rex",
+          "resources": 1,
+          "influence": 6
+        }
+      ],
+      "images": {
+        "front": "tiles/images/18_mecatolRex.png",
+        "back": "tiles/images/blueBack.png"
+      }
+    },
+    {
+      "board_game_id": "19",
+      "id": "tile/wellon",
+      "planets": [
+        {
+          "id": "planet/wellon",
+          "name": "Wellon",
+          "resources": 1,
+          "influence": 2,
+          "technologySpeciality": "cybernetic",
+          "trait": "industrial"
+        }
+      ],
+      "images": {
+        "front": "tiles/images/19_wellon.png",
+        "back": "tiles/images/blueBack.png"
+      }
+    },
+    {
+      "board_game_id": "20",
+      "id": "tile/wellon",
+      "planets": [
+        {
+          "id": "planet/vefutIi",
+          "name": "Vefut II",
+          "resources": 2,
+          "influence": 2,
+          "trait": "hazardous"
+        }
+      ],
+      "images": {
+        "front": "tiles/images/20_vefutIi.png",
+        "back": "tiles/images/blueBack.png"
+      }
+    },
+    {
+      "board_game_id": "21",
+      "id": "tile/thibah",
+      "planets": [
+        {
+          "id": "planet/thibah",
+          "name": "Thibah",
+          "resources": 1,
+          "influence": 1,
+          "trait": "industrial",
+          "technologySpeciality": "propulsion"
+        }
+      ],
+      "images": {
+        "front": "tiles/images/21_thibah.png",
+        "back": "tiles/images/blueBack.png"
+      }
+    },
+    {
+      "board_game_id": "22",
+      "id": "tile/tar'mann",
+      "planets": [
+        {
+          "id": "planet/tar'mann",
+          "name": "Tar'mann",
+          "resources": 1,
+          "influence": 1,
+          "trait": "industrial",
+          "technologySpeciality": "biotic"
+        }
+      ],
+      "images": {
+        "front": "tiles/images/22_tar'mann.png",
+        "back": "tiles/images/blueBack.png"
+      }
+    },
+    {
+      "board_game_id": "23",
+      "id": "tile/saudor",
+      "planets": [
+        {
+          "id": "planet/saudor",
+          "name": "Saudor",
+          "resources": 2,
+          "influence": 2,
+          "trait": "industrial"
+        }
+      ],
+      "images": {
+        "front": "tiles/images/23_saudor.png",
+        "back": "tiles/images/blueBack.png"
+      }
+    },
+    {
+      "board_game_id": "24",
+      "id": "tile/meharXull",
+      "planets": [
+        {
+          "id": "planet/meharXull",
+          "name": "Mehar Xull",
+          "resources": 1,
+          "influence": 3,
+          "trait": "hazardous",
+          "technologySpeciality": "warfare"
+        }
+      ],
+      "images": {
+        "front": "tiles/images/24_meharXull.png",
+        "back": "tiles/images/blueBack.png"
+      }
+    },
+    {
+      "board_game_id": "25",
+      "id": "tile/quannBeta",
+      "planets": [
+        {
+          "id": "planet/quann",
+          "name": "Quann",
+          "resources": 2,
+          "influence": 1,
+          "trait": "cultural"
+        }
+      ],
+      "wormholes": [
+        "beta"
+      ],
+      "images": {
+        "front": "tiles/images/25_quannBeta.png",
+        "back": "tiles/images/blueBack.png"
+      }
+    },
+    {
+      "board_game_id": "26",
+      "id": "tile/lodorAlpha",
+      "planets": [
+        {
+          "id": "planet/lodor",
+          "name": "Lodor",
+          "resources": 3,
+          "influence": 1,
+          "trait": "cultural"
+        }
+      ],
+      "wormholes": [
+        "alpha"
+      ],
+      "images": {
+        "front": "tiles/images/26_quannBeta.png",
+        "back": "tiles/images/blueBack.png"
+      }
+    },
+    {
+      "board_game_id": "27",
+      "id": "tile/newAlbionStarpoint",
+      "planets": [
+        {
+          "id": "planet/newAlbion",
+          "name": "New Albion",
+          "resources": 1,
+          "influence": 1,
+          "trait": "industrial",
+          "technologySpeciality": "biotic"
+        },
+        {
+          "id": "planet/starpoint",
+          "name": "Starpoint",
+          "resources": 3,
+          "influence": 1,
+          "trait": "hazardous"
+        }
+      ],
+      "images": {
+        "front": "tiles/images/27_newAlbionStarpoint.png",
+        "back": "tiles/images/blueBack.png"
+      }
+    },
+    {
+      "board_game_id": "28",
+      "id": "tile/tequ'ranTorkan",
+      "planets": [
+        {
+          "id": "planet/tequ'ran",
+          "name": "Tequ'ran",
+          "resources": 2,
+          "influence": 0,
+          "trait": "hazardous"
+        },
+        {
+          "id": "planet/torkan",
+          "name": "Torkan",
+          "resources": 0,
+          "influence": 3,
+          "trait": "cultural"
+        }
+      ],
+      "images": {
+        "front": "tiles/images/28_tequ'ranTorkan.png",
+        "back": "tiles/images/blueBack.png"
+      }
+    },
+    {
+      "board_game_id": "29",
+      "id": "tile/qucen'nRarron",
+      "planets": [
+        {
+          "id": "planet/qucen'n",
+          "name": "Qucen'n",
+          "resources": 1,
+          "influence": 2,
+          "trait": "industrial"
+        },
+        {
+          "id": "planet/rarron",
+          "name": "Rarron",
+          "resources": 0,
+          "influence": 3,
+          "trait": "cultural"
+        }
+      ],
+      "images": {
+        "front": "tiles/images/29_qucen'nRarron.png",
+        "back": "tiles/images/blueBack.png"
+      }
+    },
+    {
+      "board_game_id": "30",
+      "id": "tile/mellonZohbat",
+      "planets": [
+        {
+          "id": "planet/mellon",
+          "name": "Mellon",
+          "resources": 0,
+          "influence": 2,
+          "trait": "cultural"
+        },
+        {
+          "id": "planet/zohbat",
+          "name": "Zohbat",
+          "resources": 3,
+          "influence": 1,
+          "trait": "hazardous"
+        }
+      ],
+      "images": {
+        "front": "tiles/images/30_mellonZohbat.png",
+        "back": "tiles/images/blueBack.png"
+      }
+    },
+    {
+      "board_game_id": "31",
+      "id": "tile/lazarSakulag",
+      "planets": [
+        {
+          "id": "planet/lazar",
+          "name": "Lazar",
+          "resources": 1,
+          "influence": 0,
+          "trait": "industrial",
+          "technologySpeciality": "cybernetic"
+        },
+        {
+          "id": "planet/sakulag",
+          "name": "Sakulag",
+          "resources": 2,
+          "influence": 1,
+          "trait": "hazardous"
+        }
+      ],
+      "images": {
+        "front": "tiles/images/31_lazarSakulag.png",
+        "back": "tiles/images/blueBack.png"
+      }
+    },
+    {
+      "board_game_id": "32",
+      "id": "tile/dalBoothaXxehan",
+      "planets": [
+        {
+          "id": "planet/dalBootha",
+          "name": "Dal Bootha",
+          "resources": 0,
+          "influence": 2,
+          "trait": "industrial"
+        },
+        {
+          "id": "planet/xxehan",
+          "name": "Xxehan",
+          "resources": 1,
+          "influence": 1,
+          "trait": "cultural"
+        }
+      ],
+      "images": {
+        "front": "tiles/images/32_dalBoothaXxehan.png",
+        "back": "tiles/images/blueBack.png"
+      }
+    },
+    {
+      "board_game_id": "33",
+      "id": "tile/corneeqResculon",
+      "planets": [
+        {
+          "id": "planet/corneeq",
+          "name": "Corneeq",
+          "resources": 1,
+          "influence": 2,
+          "trait": "industrial"
+        },
+        {
+          "id": "planet/resculon",
+          "name": "Resculon",
+          "resources": 2,
+          "influence": 0,
+          "trait": "cultural"
+        }
+      ],
+      "images": {
+        "front": "tiles/images/33_corneeqResculon.png",
+        "back": "tiles/images/blueBack.png"
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  // the id on the tile from the board game
+  "board_game_id": "",
+  // the id consists of `tile/<planetNames>`, where the planet names are ordered alphabetically. It follows the kebab case convention.
+  // if there are wormholes these will also be added to the name, following the planet names and will aslo be sorted alphatetically.
+  "id": "",
+  "name": "", // not required
+  "planets": [], // not required
+  "wormholes": [], // not required
+  "images": {
+    "front": "",
+    "back": ""
+  },
+  // How to show roman tile?
+}

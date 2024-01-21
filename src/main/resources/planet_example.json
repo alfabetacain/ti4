@@ -1,0 +1,8 @@
+{
+  "id": "planet/jord",
+  "name": "jord",
+  "resources": 2,
+  "influence": 1,
+  "technologySpeciality": "", // biotic, propulsion, cybernetic, warfare
+  "trait": "" // cultural, hazardous, industrial
+}
