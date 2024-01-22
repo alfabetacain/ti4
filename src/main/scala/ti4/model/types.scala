@@ -43,7 +43,11 @@ object Unit {
   final case class GroundForce(owningFaction: FactionId) extends Unit
 }
 
-final case class Planet(name: String, units: List[Unit.GroundForce])
+enum Structure {
+  case PlanetaryDefenseSystem, SpaceDock
+}
+
+final case class Planet(name: String, units: List[Unit.GroundForce], structures: List[Structure])
 
 enum Anomaly {
   case GravityRift, Asteroids

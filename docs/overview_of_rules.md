@@ -115,3 +115,5 @@ This tile should be on the edge of the game board.
 - [Pictures of Tiles used in above map generator](https://github.com/KeeganW/ti4/tree/master/public/tiles)
 - [Twilight Imperium Comparison](https://docs.google.com/document/d/1pziT_7fKJsQWDvyDOBsybKbqoYF6UThiv-39-TIgRWs/edit)
 - [Twilight Imperium 4 Planets](https://docs.google.com/spreadsheets/d/1IxHdG1hB0CgcXFAB2D_ePcEuYf9VVcYlUte_6hxFtFg/edit#gid=0)
+- [Hexagonal Grids](https://www.redblobgames.com/grids/hexagons/)
+- [Implementation of Hex Grids](https://www.redblobgames.com/grids/hexagons/implementation.html)

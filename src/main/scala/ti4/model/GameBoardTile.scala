@@ -4,6 +4,8 @@ import ti4.model.Unit.Ship
 
 object GameBoardTile {
 
+  
+
   enum Wormhole {
     case Alpha, Beta, Delta, Gamma
   }
@@ -24,10 +26,5 @@ object GameBoardTile {
                         anomalies: List[Anomaly],
                         ships: List[Ship],
                         wormholes: List[Wormhole]) extends System
-
-  // list is not a good representation as we do not know anything about adjacency aka what is placed where.
-  // A mix of hexagonal and weight graph is probably the best option as data structure
-  // Is it necessary to know the position of each tile on the board? Maybe a layout that the graph is in could help?
-  case class GameBoard(tiles: List[Tile])
 
 }
