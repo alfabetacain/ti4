@@ -608,7 +608,7 @@
           "name": "Dal Bootha",
           "resources": 0,
           "influence": 2,
-          "trait": "industrial"
+          "trait": "cultural"
         },
         {
           "id": "planet/xxehan",
@@ -674,7 +674,7 @@
     },
     {
       "board_game_id": "35",
-      "id": "tile/beregUrtaIv",
+      "id": "tile/beregLirtaIv",
       "planets": [
         {
           "id": "planet/bereg",
@@ -684,15 +684,15 @@
           "trait": "hazardous"
         },
         {
-          "id": "planet/urtaIv",
-          "name": "Urta IV",
+          "id": "planet/lirtaIv",
+          "name": "Lirta IV",
           "resources": 2,
           "influence": 3,
           "trait": "hazardous"
         }
       ],
       "images": {
-        "front": "tiles/images/35_beregUrtaIv.png",
+        "front": "tiles/images/35_beregLirtaIv.png",
         "back": "tiles/images/blueBack.png"
       }
     },
@@ -816,6 +816,120 @@
       "images": {
         "front": "tiles/images/43_supernova.png",
         "back": "tiles/images/redBack.png"
+      }
+    },
+    {
+      "board_game_id": "44",
+      "id": "tile/asteroidField#1",
+      "name": "Asteroid Field",
+      "images": {
+        "front": "tiles/images/44_asteroidField#1.png",
+        "back": "tiles/images/redBack.png"
+      }
+    },
+    {
+      "board_game_id": "45",
+      "id": "tile/asteroidField#2",
+      "name": "Asteroid Field",
+      "images": {
+        "front": "tiles/images/45_asteroidField#2.png",
+        "back": "tiles/images/redBack.png"
+      }
+    },
+    {
+      "board_game_id": "46",
+      "id": "tile/emptySpace#1",
+      "name": "Empty Space",
+      "images": {
+        "front": "tiles/images/46_emptySpace#1.png",
+        "back": "tiles/images/redBack.png"
+      }
+    },
+    {
+      "board_game_id": "47",
+      "id": "tile/emptySpace#2",
+      "name": "Empty Space",
+      "images": {
+        "front": "tiles/images/47_emptySpace#2.png",
+        "back": "tiles/images/redBack.png"
+      }
+    },
+    {
+      "board_game_id": "48",
+      "id": "tile/emptySpace#3",
+      "name": "Empty Space",
+      "images": {
+        "front": "tiles/images/48_emptySpace#3.png",
+        "back": "tiles/images/redBack.png"
+      }
+    },
+    {
+      "board_game_id": "49",
+      "id": "tile/emptySpace#4",
+      "name": "Empty Space",
+      "images": {
+        "front": "tiles/images/49_emptySpace#4.png",
+        "back": "tiles/images/redBack.png"
+      }
+    },
+    {
+      "board_game_id": "50",
+      "id": "tile/emptySpace#5",
+      "name": "Empty Space",
+      "images": {
+        "front": "tiles/images/50_emptySpace#5.png",
+        "back": "tiles/images/redBack.png"
+      }
+    },
+    {
+      "board_game_id": "51",
+      "id": "tile/creussDelta",
+      "planets": [
+        {
+          "id": "planet/creuss",
+          "name": "Creuss",
+          "resources": 2,
+          "influence": 4
+        }
+      ],
+      "wormholes": [
+        "delta"
+      ],
+      "images": {
+        "front": "tiles/images/51_creussDelta.png",
+        "back": "tiles/images/51_creussDeltaBack.png"
+      }
+    },
+    {
+      "board_game_id": "52",
+      "id": "tile/ixth",
+      "planets": [
+        {
+          "id": "planet/ixth",
+          "name": "Ixth",
+          "resources": 3,
+          "influence": 5
+        }
+      ],
+      "images": {
+        "front": "tiles/images/52_ixth.png",
+        "back": "tiles/images/greenBack.png"
+      }
+    },
+    {
+      "board_game_id": "53",
+      "id": "tile/arcturus",
+      "planets": [
+        {
+          "id": "planet/arcturus",
+          "name": "Arcturus",
+          "resources": 4,
+          "influence": 4
+        }
+      ],
+      "images": {
+        "front": "tiles/images/53_arcturus.png",
+        "back": "tiles/images/greenBack.png"
       }
     }
   ]

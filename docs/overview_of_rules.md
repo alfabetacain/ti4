@@ -117,3 +117,4 @@ This tile should be on the edge of the game board.
 - [Twilight Imperium 4 Planets](https://docs.google.com/spreadsheets/d/1IxHdG1hB0CgcXFAB2D_ePcEuYf9VVcYlUte_6hxFtFg/edit#gid=0)
 - [Hexagonal Grids](https://www.redblobgames.com/grids/hexagons/)
 - [Implementation of Hex Grids](https://www.redblobgames.com/grids/hexagons/implementation.html)
+- [Planet Systems](https://twilight-imperium.fandom.com/wiki/Planet_Systems#Prophecy_of_Kings)
