@@ -695,7 +695,128 @@
         "front": "tiles/images/35_beregUrtaIv.png",
         "back": "tiles/images/blueBack.png"
       }
+    },
+    {
+      "board_game_id": "36",
+      "id": "tile/arnorLor",
+      "planets": [
+        {
+          "id": "planet/arnor",
+          "name": "Arnor",
+          "resources": 2,
+          "influence": 1,
+          "trait": "industrial"
+        },
+        {
+          "id": "planet/lor",
+          "name": "Lor",
+          "resources": 1,
+          "influence": 2,
+          "trait": "industrial"
+        }
+      ],
+      "images": {
+        "front": "tiles/images/36_arnorLor.png",
+        "back": "tiles/images/blueBack.png"
+      }
+    },
+    {
+      "board_game_id": "37",
+      "id": "tile/arinamMeer",
+      "planets": [
+        {
+          "id": "planet/arinam",
+          "name": "Arinam",
+          "resources": 1,
+          "influence": 2,
+          "trait": "industrial"
+        },
+        {
+          "id": "planet/meer",
+          "name": "Meer",
+          "resources": 0,
+          "influence": 4,
+          "trait": "hazardous",
+          "technologySpeciality": "warfare"
+        }
+      ],
+      "images": {
+        "front": "tiles/images/37_arinamMeer.png",
+        "back": "tiles/images/blueBack.png"
+      }
+    },
+    {
+      "board_game_id": "38",
+      "id": "tile/abyzFria",
+      "planets": [
+        {
+          "id": "planet/abyz",
+          "name": "Abyz",
+          "resources": 3,
+          "influence": 0,
+          "trait": "hazardous"
+        },
+        {
+          "id": "planet/fria",
+          "name": "Fria",
+          "resources": 2,
+          "influence": 0,
+          "trait": "hazardous"
+        }
+      ],
+      "images": {
+        "front": "tiles/images/38_abyzFria.png",
+        "back": "tiles/images/blueBack.png"
+      }
+    },
+    {
+      "board_game_id": "39",
+      "id": "tile/alpha",
+      "wormholes": [
+        "alpha"
+      ],
+      "images": {
+        "front": "tiles/images/39_alpha.png",
+        "back": "tiles/images/redBack.png"
+      }
+    },
+    {
+      "board_game_id": "40",
+      "id": "tile/beta",
+      "wormholes": [
+        "beta"
+      ],
+      "images": {
+        "front": "tiles/images/40_beta.png",
+        "back": "tiles/images/redBack.png"
+      }
+    },
+    {
+      "board_game_id": "41",
+      "id": "tile/gravityRift",
+      "name": "Gravity Rift",
+      "images": {
+        "front": "tiles/images/41_gravityRift.png",
+        "back": "tiles/images/redBack.png"
+      }
+    },
+    {
+      "board_game_id": "42",
+      "id": "tile/nebula",
+      "name": "Nebula",
+      "images": {
+        "front": "tiles/images/42_nebula.png",
+        "back": "tiles/images/redBack.png"
+      }
+    },
+    {
+      "board_game_id": "43",
+      "id": "tile/supernova",
+      "name": "Supernova",
+      "images": {
+        "front": "tiles/images/43_supernova.png",
+        "back": "tiles/images/redBack.png"
+      }
     }
-
   ]
 }
