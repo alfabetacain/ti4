@@ -33,4 +33,6 @@ object GameBoard {
    */
   def shipsInRange(targetTile: TileId, ships: List[Ship], features: List[Feature]): List[ShipPath] = List.empty
 
+  // tech points in the different types are the way to fulfill tech prerequisites
+
 }
