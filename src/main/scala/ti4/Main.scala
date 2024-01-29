@@ -9,7 +9,7 @@ import tyrian.CSS
 import org.scalajs.dom
 
 import java.util.UUID
-import ti4.model.{Faction, Tile, TileId, Map as TMap, Unit as TUnit}
+import ti4.model.{Faction, Tile, TileId, GameBoard as TMap, Unit as TUnit}
 import cats.effect.IO
 
 final case class Model(map: TMap)

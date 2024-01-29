@@ -5,7 +5,7 @@ import ti4.model.Unit.Ship
 import scala.collection.immutable.Map as SMap
 import scala.collection.mutable.ArrayBuffer
 
-object GameBoard {
+object GameBoardNotes {
 
   opaque type TileId     = String
   private type Weight     = Int

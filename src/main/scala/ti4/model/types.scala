@@ -11,7 +11,7 @@ import scala.collection.immutable.{ Map => SMap }
 
 type TileId = String
 
-final case class Map(
+final case class GameBoard(
                       grid: Array[Array[Option[TileId]]],
                       tiles: SMap[TileId, Tile],
                       factions: SMap[FactionId, Faction],
@@ -22,10 +22,10 @@ final case class Map(
   def getFaction(id: FactionId): Option[Faction] = factions.get(id)
 }
 
-object Map {
+object GameBoard {
 
-  def init(): Map = {
-    Map(Array.empty, SMap.empty, SMap.empty)
+  def init(): GameBoard = {
+    GameBoard(Array.empty, SMap.empty, SMap.empty)
   }
 }
 

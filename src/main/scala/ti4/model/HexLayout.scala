@@ -121,4 +121,10 @@ object HexLayout {
     }
   }
 
+  // think about how the API of the Hex grid should look like
+  // position is easy to determine, the question is more how we choose
+  // to represent the values that the grid should hold.
+
+  type HexMap[A] = Map[Hex, A]
+
 }

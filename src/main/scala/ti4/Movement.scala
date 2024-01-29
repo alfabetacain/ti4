@@ -3,7 +3,7 @@ package ti4
 import monocle.syntax.all._
 import cats.syntax.all._
 import ti4.model.TileId
-import ti4.model.{ Map => TMap, Unit => TUnit }
+import ti4.model.{ GameBoard => TMap, Unit => TUnit }
 import cats.kernel.Eq
 
 object Movement {
