@@ -7,7 +7,7 @@ import scala.collection.mutable.ArrayBuffer
 
 object GameBoard {
 
-  private type TileId     = String
+  opaque type TileId     = String
   private type Weight     = Int
   private type Neighbours = SMap[TileId, Weight]
   opaque type HexTile     = (TileId, Neighbours)
