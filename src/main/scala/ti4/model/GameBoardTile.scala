@@ -4,15 +4,17 @@ import ti4.model.Unit.Ship
 
 object GameBoardTile {
 
-  
+  opaque type TileId = String
+
+  def toTileId(s: String): TileId = s
 
   enum Wormhole {
     case Alpha, Beta, Delta, Gamma
   }
 
-  trait Tile
-
-  trait System extends Tile
+  trait Tile {
+    def id: TileId
+  }
 
   trait Hyperlane extends Tile
 
@@ -25,6 +27,6 @@ object GameBoardTile {
                         planet: List[Planet],
                         anomalies: List[Anomaly],
                         ships: List[Ship],
-                        wormholes: List[Wormhole]) extends System
+                        wormholes: List[Wormhole]) extends Tile
 
 }

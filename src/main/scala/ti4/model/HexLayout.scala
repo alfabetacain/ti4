@@ -125,6 +125,29 @@ object HexLayout {
   // position is easy to determine, the question is more how we choose
   // to represent the values that the grid should hold.
 
-  type HexMap[A] = Map[Hex, A]
+  type HexGrid[T] = Map[Hex, T]
+
+  private def generateRDimension(size: Int, q: Int) = {
+    Math.max(-size, -q - size) to Math.min(size, -q + size)
+  }
+
+  // should we make the game board take the hex grid as a parameter?
+  // That way we can make it possible in the future to make different board layouts
+  // How to make it possible to ask for a specific game board? Should it have an id?
+  def generateHexGrid[T](size: Int, empty: T): Map[Hex, T] = {
+    val hexes = for {
+      q <- -size to size
+      r <- generateRDimension(size, q)
+    } yield Hex(q, r) -> empty
+
+    hexes.toMap
+  }
+
+  // this should be how the game board is created
+  // next is to figure out out to show the different options of board layouts
+  // as they are limited. Should it be in an enum? Somewhere else? How to make it dynamic so it can something
+  // we can read in and potentially other people can alter later?
+  case class GameBoard(hexGrid: HexGrid[Tile]) {
+  }
 
 }

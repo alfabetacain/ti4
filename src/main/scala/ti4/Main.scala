@@ -9,16 +9,16 @@ import tyrian.CSS
 import org.scalajs.dom
 
 import java.util.UUID
-import ti4.model.{Faction, Tile, TileId, GameBoard as TMap, Unit as TUnit}
+import ti4.model.{Faction, Tile, TileId, GameBoard, Unit as TUnit}
 import cats.effect.IO
 
-final case class Model(map: TMap)
+final case class Model(map: GameBoard)
 
 object Model {
 
   def init(): Model = {
     val faction1 = "faction1"
-    Model(TMap(
+    Model(GameBoard(
       Array(
         Array(None, None, None, "1".some, "2".some, None, None),
         Array("3".some, "4".some, "5".some, "6".some, "7".some, "8".some, None),
@@ -114,7 +114,7 @@ object Main extends TyrianApp[Msg, Model] {
 
   private val polygonSize = 50
 
-  private def renderPolygon(id: TileId, x: Int, y: Int, map: TMap): List[Html[Msg]] = {
+  private def renderPolygon(id: TileId, x: Int, y: Int, map: GameBoard): List[Html[Msg]] = {
     val size = polygonSize
     List(
       polygon(
