@@ -118,6 +118,7 @@ object Main extends TyrianApp[Msg, Model] {
     val size = polygonSize
     List(
       polygon(
+        // space separated list of points (coordinates)
         points := s"${x},${y} ${x},${y - size / 2} ${x + size},${y - size} ${x + size * 2},${y - size / 2} ${x + size * 2},${y + size / 2} ${x + size},${y + size} ${x},${y + size / 2}",
         stroke := "black",
         fill   := Colors.gray,
