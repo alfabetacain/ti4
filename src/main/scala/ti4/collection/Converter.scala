@@ -4,18 +4,18 @@ object Converter {
 
   // we only use the flat top orientation
   // matrix for converting hex coordinates to pixel coordinates
-  val f0 = 3.0 / 2.0
-  val f1 = 0.0
-  val f2 = Math.sqrt(3.0) / 2.0
-  val f3 = Math.sqrt(3.0)
+  private val f0 = 3.0 / 2.0
+  private val f1 = 0.0
+  private val f2 = Math.sqrt(3.0) / 2.0
+  private val f3 = Math.sqrt(3.0)
 
   // the inverse matrix, does the opposite of the above
-  val b0 = 2.0 / 3.0
-  val b1 = 0.0
-  val b2 = -1.0 / 3.0
-  val b3 = Math.sqrt(3.0) / 3.0
+  private val b0 = 2.0 / 3.0
+  private val b1 = 0.0
+  private val b2 = -1.0 / 3.0
+  private val b3 = Math.sqrt(3.0) / 3.0
 
-  val startAngle = 0.0
+  private val startAngle = 0.0
 
   /**
    * To go from a hex coordinate to a screen coordinate I first multiply by the matrix, then multiply by the size, then add the origin
@@ -43,7 +43,7 @@ object Converter {
     )
   }
 
-  def hexCornerOffset(layout: Layout, corner: Int): Point = {
+  private def hexCornerOffset(layout: Layout, corner: Int): Point = {
     val angle = 2.0 * Math.PI * (startAngle + corner) / 6.0
     Point(
       x = layout.size.x * Math.cos(angle),
@@ -62,5 +62,7 @@ object Converter {
       )
     }
   }
+  
+  def toVector(hex: Hex): Vector[Int] = hex.productIterator.toVector.collect{ case i: Int => i }
 
 }
