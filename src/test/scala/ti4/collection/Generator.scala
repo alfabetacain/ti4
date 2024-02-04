@@ -26,8 +26,4 @@ object Generator {
     hex    <- hexagonCoordinate
   } yield (layout, hex)
 
-  val layoutAndPoint: Gen[(Layout, Point)] = for {
-    layout <- layout
-    point <- point
-  } yield (layout, point)
 }

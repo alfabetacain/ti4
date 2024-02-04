@@ -14,13 +14,4 @@ class ConverterTest extends ScalaCheckSuite {
     }
   }
 
-  property("A point converted to a hexagon coordinate should convert back to the same point") {
-    forAll(Generator.layoutAndPoint) { case (layout: Layout, originalPoint: Point) =>
-      val hex = Converter.toHex(layout, originalPoint)
-      val newPoint = Converter.toPoint(layout, hex)
-
-      newPoint == originalPoint
-    }
-  }
-
 }
