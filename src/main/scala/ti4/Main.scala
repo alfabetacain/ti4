@@ -9,7 +9,7 @@ import tyrian.CSS
 import org.scalajs.dom
 
 import java.util.UUID
-import ti4.model.{Faction, Tile, TileId, GameBoard, Unit as TUnit}
+import ti4.model.{Faction, SystemTile, TileId, GameBoard, Unit as TUnit}
 import cats.effect.IO
 
 final case class Model(map: GameBoard)
@@ -25,7 +25,7 @@ object Model {
         Array("9".some, "10".some, "11".some, "12".some, "13".some, "14".some, "15".some)
       ),
       Map(
-        "1" -> Tile(
+        "1" -> SystemTile(
           id = "1",
           units = List(
             TUnit.Ship.Destroyer(faction1),
@@ -33,46 +33,46 @@ object Model {
             TUnit.Ship.Destroyer(faction1),
           )
         ),
-        "2" -> Tile(
+        "2" -> SystemTile(
           id = "2",
         ),
-        "3" -> Tile(
+        "3" -> SystemTile(
           id = "3",
         ),
-        "4" -> Tile(
+        "4" -> SystemTile(
           id = "4",
         ),
-        "5" -> Tile(
+        "5" -> SystemTile(
           id = "5",
         ),
-        "6" -> Tile(
+        "6" -> SystemTile(
           id = "6",
         ),
-        "7" -> Tile(
+        "7" -> SystemTile(
           id = "7",
         ),
-        "8" -> Tile(
+        "8" -> SystemTile(
           id = "8",
         ),
-        "9" -> Tile(
+        "9" -> SystemTile(
           id = "9",
         ),
-        "10" -> Tile(
+        "10" -> SystemTile(
           id = "10",
         ),
-        "11" -> Tile(
+        "11" -> SystemTile(
           id = "11",
         ),
-        "12" -> Tile(
+        "12" -> SystemTile(
           id = "12",
         ),
-        "13" -> Tile(
+        "13" -> SystemTile(
           id = "13",
         ),
-        "14" -> Tile(
+        "14" -> SystemTile(
           id = "14",
         ),
-        "15" -> Tile(
+        "15" -> SystemTile(
           id = "15",
         ),
       ),

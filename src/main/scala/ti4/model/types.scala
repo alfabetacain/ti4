@@ -12,13 +12,13 @@ import scala.collection.immutable.{ Map => SMap }
 type TileId = String
 
 final case class GameBoard(
-                      grid: Array[Array[Option[TileId]]],
-                      tiles: SMap[TileId, Tile],
-                      factions: SMap[FactionId, Faction],
+                            grid: Array[Array[Option[TileId]]],
+                            tiles: SMap[TileId, SystemTile],
+                            factions: SMap[FactionId, Faction],
 ) {
   def getTileIds: List[TileId]                   = tiles.keys.toList
   def neighbours(tileId: TileId): List[TileId]   = List.empty
-  def getTile(id: TileId): Option[Tile]          = tiles.get(id)
+  def getTile(id: TileId): Option[SystemTile]          = tiles.get(id)
   def getFaction(id: FactionId): Option[Faction] = factions.get(id)
 }
 
@@ -27,20 +27,6 @@ object GameBoard {
   def init(): GameBoard = {
     GameBoard(Array.empty, SMap.empty, SMap.empty)
   }
-}
-
-sealed trait Unit {
-  def owningFaction: FactionId
-}
-
-object Unit {
-  sealed trait Ship extends Unit
-
-  object Ship {
-    final case class Destroyer(owningFaction: FactionId) extends Ship
-  }
-
-  final case class GroundForce(owningFaction: FactionId) extends Unit
 }
 
 enum Structure {
@@ -53,7 +39,7 @@ enum Anomaly {
   case GravityRift, Asteroids
 }
 
-final case class Tile(
+final case class SystemTile(
     id: TileId = UUID.randomUUID().toString(),
     units: List[Unit] = List.empty,
     planets: List[Planet] = List.empty,
