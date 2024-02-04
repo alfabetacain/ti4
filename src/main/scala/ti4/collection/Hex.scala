@@ -1,6 +1,9 @@
 package ti4.collection
 
-final case class Hex(q: Int, r: Int, s: Int) {
+/**
+ * A Hex is a point in a hexagonal grid. It is represented by three coordinates q, r, and s that fulfils the constraint q + r + s = 0.
+ */
+final case class Hex private (q: Int, r: Int, s: Int) {
   def +(other: Hex): Hex = Hex(q + other.q, r + other.r, s + other.s)
 
   def -(other: Hex): Hex = Hex(q - other.q, r - other.r, s - other.s)
@@ -8,6 +11,8 @@ final case class Hex(q: Int, r: Int, s: Int) {
   def *(scalar: Int): Hex = Hex(q * scalar, r * scalar, s * scalar)
 
   def length: Int = (q.abs + r.abs + s.abs) / 2
+
+  def toVector: Vector[Int] = this.productIterator.toVector.collect { case i: Int => i }
 }
 
 object Hex {
@@ -25,16 +30,16 @@ object Hex {
     var roundQ = fracQ.round
     var roundR = fracR.round
     var roundS = fracS.round
-    val qDiff = (fracQ - roundQ).abs
-    val rDiff = (fracR - roundR).abs
-    val sDiff = (fracS - roundS).abs
+    val qDiff  = (fracQ - roundQ).abs
+    val rDiff  = (fracR - roundR).abs
+    val sDiff  = (fracS - roundS).abs
 
     if (qDiff > rDiff && qDiff > sDiff) {
-      roundQ = -roundR * -roundS
+      roundQ = -roundR - roundS
     } else if (rDiff > sDiff) {
-      roundR = -roundQ * -roundS
+      roundR = -roundQ - roundS
     } else {
-      roundS = -roundQ * -roundR
+      roundS = -roundQ - roundR
     }
 
     Hex(roundQ.toInt, roundR.toInt, roundS.toInt)

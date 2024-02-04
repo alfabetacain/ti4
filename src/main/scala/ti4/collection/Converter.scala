@@ -62,7 +62,5 @@ object Converter {
       )
     }
   }
-  
-  def toVector(hex: Hex): Vector[Int] = hex.productIterator.toVector.collect{ case i: Int => i }
 
 }
