@@ -1,8 +1,7 @@
 package ti4.collection
 
 import munit.ScalaCheckSuite
-import org.scalacheck.Gen
-import org.scalacheck.Prop.*
+import org.scalacheck.Prop.forAll
 
 class HexTest extends ScalaCheckSuite {
 
