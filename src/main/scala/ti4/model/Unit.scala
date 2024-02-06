@@ -8,6 +8,13 @@ object Unit {
   sealed trait Ship extends Unit
 
   object Ship {
+    final case class AntiFighterBarrageStats(numberOfDice: Int, threshold: Int)
+
+    final case class SpaceCombatStats(
+        antiFighterBarrage: Option[AntiFighterBarrageStats],
+        numberOfDice: Int,
+        threshold: Int
+    )
     final case class Destroyer(owningFaction: FactionId) extends Ship
   }
 
