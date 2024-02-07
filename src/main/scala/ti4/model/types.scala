@@ -12,13 +12,13 @@ import scala.collection.immutable.{ Map => SMap }
 type TileId = String
 
 final case class GameBoard(
-                            grid: Array[Array[Option[TileId]]],
-                            tiles: SMap[TileId, SystemTile],
-                            factions: SMap[FactionId, Faction],
+    grid: Array[Array[Option[TileId]]],
+    tiles: SMap[TileId, SystemTile],
+    factions: SMap[FactionId, Faction],
 ) {
   def getTileIds: List[TileId]                   = tiles.keys.toList
   def neighbours(tileId: TileId): List[TileId]   = List.empty
-  def getTile(id: TileId): Option[SystemTile]          = tiles.get(id)
+  def getTile(id: TileId): Option[SystemTile]    = tiles.get(id)
   def getFaction(id: FactionId): Option[Faction] = factions.get(id)
 }
 
@@ -44,4 +44,10 @@ final case class SystemTile(
     units: List[Unit] = List.empty,
     planets: List[Planet] = List.empty,
     anomaly: Option[Anomaly] = Option.empty,
-)
+) {
+
+  def isOwnedBy(faction: FactionId): Boolean = {
+    // TODO
+    false
+  }
+}

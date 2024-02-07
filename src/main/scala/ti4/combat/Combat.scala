@@ -5,11 +5,17 @@ import cats.effect.IO
 import cats.effect.std.Random
 import cats.effect.std.SecureRandom
 import cats.syntax.all._
-import ti4.model.FactionId
-import ti4.model.Unit.Ship
 import ti4.model.Faction
+import ti4.model.FactionId
+import ti4.model.TileId
+import ti4.model.Unit.Ship
+import ti4.model.Unit.Ship.SpaceCombatStats
+import ti4.model.GameBoardNotes
+import ti4.model.SystemTile
 
 object Combat {
+
+  type Hits = Int
 
   case class Fleet(owner: Faction, ships: List[Ship])
 
@@ -27,48 +33,83 @@ object Combat {
 
   def resolveSpaceCombatRound(attacker: Fleet, defender: Fleet): IO[SpaceCombatRoundResult] = {
     for {
-      newAttacker <- rollForHits(attacker).flatMap(assignHits(_, defender))
-      newDefender <- rollForHits(defender).flatMap(assignHits(_, attacker))
-    } yield SpaceCombatRoundResult(newAttacker, newDefender)
+      remainingAttackers <- rollCombat(defender).flatMap(attacker.owner.assignHits(_, attacker.ships))
+      remainingDefenders <- rollCombat(attacker).flatMap(defender.owner.assignHits(_, defender.ships))
+    } yield SpaceCombatRoundResult(
+      attacker.copy(ships = remainingAttackers),
+      attacker.copy(ships = remainingDefenders),
+    )
   }
 
-  def isDeclaringRetreat(faction: Faction): IO[Boolean] = {
-    false.pure[IO]
+  private def rollAntiFighterBarrage(fleet: Fleet): IO[Hits] = {
+    fleet.ships.map { fleet.owner.getSpaceCombatStats }
+      .collect { case SpaceCombatStats(Some(antiFighterBarrage), _, _) => antiFighterBarrage }
+      .traverse { barrageStats =>
+        rollDice(barrageStats.numberOfDice, barrageStats.threshold)
+      }.map(_.sum)
   }
 
   def antiFighterBarrage(attacker: Fleet, defender: Fleet): IO[SpaceCombatRoundResult] = {
-    SpaceCombatRoundResult(attacker, defender).pure[IO]
+    for {
+      remainingAttackers <- rollAntiFighterBarrage(defender).flatMap(attacker.owner.assignHits(_, attacker.ships))
+      remainingDefenders <- rollAntiFighterBarrage(attacker).flatMap(defender.owner.assignHits(_, defender.ships))
+    } yield SpaceCombatRoundResult(
+      attacker.copy(ships = remainingAttackers),
+      defender.copy(ships = remainingDefenders),
+    )
   }
 
-  def getNumberOfDice(owner: FactionId, ship: Ship): Int = {
-    1
-  }
-
-  def rollDice(threshold: Int): IO[Boolean] = {
+  def rollDice(numberOfDice: Int, threshold: Int): IO[Int] = {
+    // TODO instanciate once
     SecureRandom.javaSecuritySecureRandom[IO].flatMap { random =>
-      random.betweenInt(1, 11).map { _ >= threshold }
+      List.fill(numberOfDice)(threshold).traverse { threshold =>
+        random.betweenInt(1, 11).map { _ >= threshold }
+      }.map(_.count(identity))
     }
+
   }
 
-  def rollForHits(fleet: Fleet): IO[Int] = {
+  def rollCombat(fleet: Fleet): IO[Int] = {
     fleet.ships.traverse { ship =>
       val stats = fleet.owner.getSpaceCombatStats(ship)
-      val dice  = List.fill(stats.numberOfDice)(stats.threshold)
-      dice.traverse { rollDice }.map(_.count(identity))
+      rollDice(stats.numberOfDice, stats.threshold)
     }.map(_.sum)
   }
 
-  def assignHits(hits: Int, fleet: Fleet): IO[Fleet] = {
-    ???
+  private def canRetreat(tile: TileId, fleet: Fleet): IO[Boolean] = {
+    GameBoardNotes.adjacentTiles(tile).exists(_.isOwnedBy(fleet.owner.id)).pure[IO]
   }
 
   def retreat(fleet: Fleet): IO[Unit] = {
     // probably needs access to the game board
     // side effect changing the board?
+    // should probably be deferred to player
+    // though not if it is impossible
     ???
   }
 
-  def spaceCombat(attacker: Fleet, defender: Fleet): IO[CombatOutcome] = {
+  enum DeclaredRetreat {
+    case Attacker, Defender
+  }
+
+  private def determineRetreats(tile: TileId, attacker: Fleet, defender: Fleet): IO[Option[DeclaredRetreat]] = {
+    val defenderRetreats =
+      OptionT(
+        defender.owner.isRetreating(tile, attacker, defender.ships).map(Option.when(_)(DeclaredRetreat.Defender))
+      )
+    val attackerRetreats =
+      OptionT(
+        attacker.owner.isRetreating(tile, defender, attacker.ships).map(Option.when(_)(DeclaredRetreat.Attacker))
+      )
+    defenderRetreats.orElse(attackerRetreats).value
+  }
+
+  def spaceCombat(
+      tile: TileId,
+      attacker: Fleet,
+      defender: Fleet,
+      declaredRetreat: Option[DeclaredRetreat] = None,
+  ): IO[CombatOutcome] = {
 
     val bothDestroyed =
       OptionT.when[IO, CombatOutcome](attacker.ships.isEmpty && defender.ships.isEmpty)(CombatOutcome.draw)
@@ -78,17 +119,25 @@ object Combat {
       OptionT.when[IO, CombatOutcome](defender.ships.isEmpty)(CombatOutcome.won(attacker.owner, attacker.ships))
 
     val defenderRetreated =
-      OptionT.liftF(isDeclaringRetreat(defender.owner)).flatMap(isRetreating =>
-        OptionT.whenF(isRetreating)(retreat(defender).as(CombatOutcome.won(attacker.owner, attacker.ships)))
-      )
+      OptionT.whenF(
+        declaredRetreat.contains(DeclaredRetreat.Defender)
+      )(retreat(defender).as(CombatOutcome.won(attacker.owner, attacker.ships)))
 
     val attackerRetreated =
-      OptionT.liftF(isDeclaringRetreat(attacker.owner)).flatMap(isRetreating =>
-        OptionT.whenF(isRetreating)(retreat(attacker).as(CombatOutcome.won(defender.owner, defender.ships)))
-      )
+      OptionT.whenF(
+        declaredRetreat.contains(DeclaredRetreat.Attacker)
+      )(retreat(attacker).as(CombatOutcome.won(defender.owner, defender.ships)))
+
+    val wantsToRetreat =
+      determineRetreats(tile, attacker, defender)
 
     val continueCombat =
-      resolveSpaceCombatRound(attacker, defender).flatMap(result => spaceCombat(result.attacker, result.defender))
+      for {
+        declaredRetreat <- wantsToRetreat
+        result <- resolveSpaceCombatRound(attacker, defender).flatMap(result =>
+          spaceCombat(tile, result.attacker, result.defender, declaredRetreat)
+        )
+      } yield result
 
     bothDestroyed
       .orElse(attackerDestroyed)
@@ -98,9 +147,9 @@ object Combat {
       .getOrElseF(continueCombat)
   }
 
-  def resolveSpaceCombat(attacker: Fleet, defender: Fleet): IO[CombatOutcome] = {
+  def resolveSpaceCombat(tile: TileId, attacker: Fleet, defender: Fleet): IO[CombatOutcome] = {
     antiFighterBarrage(attacker, defender).flatMap { case SpaceCombatRoundResult(attacker, defender) =>
-      spaceCombat(attacker, defender)
+      spaceCombat(tile, attacker, defender)
     }
   }
 }

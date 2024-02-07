@@ -34,4 +34,7 @@ object GameBoardNotes {
 
   // tech points in the different types are the way to fulfill tech prerequisites
 
+  // will need this for retreats
+  def adjacentTiles(tile: TileId): List[SystemTile] = List.empty
+
 }

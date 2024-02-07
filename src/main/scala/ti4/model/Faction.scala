@@ -1,7 +1,10 @@
 package ti4.model
 
+import cats.syntax.all._
 import ti4.model.{ Unit => TUnit }
 import ti4.model.Unit.Ship
+import cats.effect.IO
+import ti4.combat.Combat.Fleet
 
 type FactionId = String
 
@@ -9,6 +12,8 @@ trait Faction {
   def id: FactionId
   def movement(unit: TUnit): Int
   def getSpaceCombatStats(ship: Ship): TUnit.Ship.SpaceCombatStats
+  def assignHits(numberOfHits: Int, ships: List[Ship]): IO[List[Ship]]
+  def isRetreating(tile: TileId, attacker: Fleet, ownShips: List[Ship]): IO[Boolean]
 }
 
 object Faction {
@@ -33,6 +38,12 @@ object Faction {
               threshold = 9
             )
         }
+      }
+      override def assignHits(numberOfHits: Int, ships: List[TUnit.Ship]): IO[List[TUnit.Ship]] = {
+        ???
+      }
+      override def isRetreating(tile: TileId, attacker: Fleet, ownShips: List[TUnit.Ship]): IO[Boolean] = {
+        false.pure[IO]
       }
     }
   }
