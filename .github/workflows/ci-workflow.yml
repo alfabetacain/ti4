@@ -44,7 +44,7 @@ jobs:
         if: "contains(github.ref, 'master')"
         uses: borales/actions-yarn@v4
         with:
-          cmd: run build --base=./web
+          cmd: run build --base=./
 
       - name: Deploy
         if: "success() && contains(github.ref, 'master')"
