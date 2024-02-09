@@ -1,4 +1,4 @@
-package ti4
+package ti4.web
 
 import monocle.syntax.all.*
 import cats.syntax.all.*
@@ -10,6 +10,7 @@ import org.scalajs.dom
 
 import java.util.UUID
 import ti4.model.{ Faction, GameBoard, SystemTile, TileId, Unit as TUnit }
+import ti4.Movement
 import cats.effect.IO
 
 final case class Model(map: GameBoard)

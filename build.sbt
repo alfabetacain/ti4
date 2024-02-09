@@ -2,13 +2,39 @@ import org.scalajs.linker.interface.ModuleSplitStyle
 
 val monocleVersion = "3.2.0"
 val munitVersion   = "1.0.0-M11"
+val scala3Version = "3.3.1"
 
-lazy val root = project
-  .in(file("."))
+lazy val domain = crossProject(JSPlatform, JVMPlatform)
+  .crossType(CrossType.Pure)
+  .in(file("domain"))
+  .settings(
+    name         := "ti4-domain",
+    scalaVersion := scala3Version,
+    scalacOptions ++= Seq("-encoding", "utf-8", "-deprecation", "-feature", "-no-indent"),
+    libraryDependencies ++= Seq(
+      "org.typelevel" %% "cats-effect"     % "3.5.3",
+      "dev.optics"      %%% "monocle-core"     % monocleVersion,
+      "dev.optics"      %%% "monocle-macro"    % monocleVersion,
+      "org.scalameta"    %%% "munit"            % munitVersion % Test,
+      "org.scalameta"    %%% "munit-scalacheck" % munitVersion % Test,
+      "org.scalacheck"   %%% "scalacheck"       % "1.17.0"     % Test
+    )
+    )
+    .jvmSettings(
+    // Add JVM-specific settings here
+    )
+    .jsSettings(
+    // Add JS-specific settings here
+    scalaJSUseMainModuleInitializer := true,
+  )
+
+lazy val webPage = project
+  .in(file("web-page"))
+  .dependsOn(domain.js)
   .enablePlugins(ScalaJSPlugin)
   .settings(
-    name         := "ti4",
-    scalaVersion := "3.3.1",
+    name         := "ti4-webpage",
+    scalaVersion := scala3Version,
     scalacOptions ++= Seq("-encoding", "utf-8", "-deprecation", "-feature", "-no-indent"),
     scalaJSUseMainModuleInitializer := true,
     scalaJSLinkerConfig ~= {
@@ -18,10 +44,16 @@ lazy val root = project
     libraryDependencies ++= Seq(
       "org.scala-js"    %%% "scalajs-dom"      % "2.4.0",
       "io.indigoengine" %%% "tyrian-io"        % "0.8.0",
-      "dev.optics"      %%% "monocle-core"     % monocleVersion,
-      "dev.optics"      %%% "monocle-macro"    % monocleVersion,
       "org.scalameta"    %% "munit"            % munitVersion % Test,
       "org.scalameta"    %% "munit-scalacheck" % munitVersion % Test,
       "org.scalacheck"   %% "scalacheck"       % "1.17.0"     % Test
     )
+  )
+
+lazy val root = project
+  .in(file("."))
+  .aggregate(domain.jvm, domain.js, webPage)
+  .settings(
+    publish := {},
+    publishLocal := {},
   )

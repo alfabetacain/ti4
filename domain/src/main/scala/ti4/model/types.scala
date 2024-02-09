@@ -1,11 +1,6 @@
 package ti4.model
 
 import cats.syntax.all._
-import tyrian.*
-import tyrian.Html.*
-import tyrian.SVG.*
-import tyrian.CSS
-import org.scalajs.dom
 import java.util.UUID
 import scala.collection.immutable.{ Map => SMap }
 
