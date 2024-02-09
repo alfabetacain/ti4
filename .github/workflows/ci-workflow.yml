@@ -38,13 +38,13 @@ jobs:
           cmd: install
 
       - name: test
-        run: sbt test
+        run: sbt scalafmtCheckAll scalafmtSbtCheck test
 
       - name: prod build
         if: "contains(github.ref, 'master')"
         uses: borales/actions-yarn@v4
         with:
-          cmd: run build --base=./
+          cmd: run build --base=./web
 
       - name: Deploy
         if: "success() && contains(github.ref, 'master')"
