@@ -15,7 +15,7 @@ object Generator {
     x <- Gen.double
     y <- Gen.double
   } yield Point(x, y)
-  
+
   private val layout: Gen[Layout] = for {
     size   <- point
     origin <- point

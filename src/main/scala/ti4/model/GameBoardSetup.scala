@@ -1,6 +1,6 @@
 package ti4.model
 
-import ti4.collection.{Hex, HexGrid}
+import ti4.collection.{ Hex, HexGrid }
 
 /**
  * Either in gameboard or here, it should return the places where it is now possible to place systems.
