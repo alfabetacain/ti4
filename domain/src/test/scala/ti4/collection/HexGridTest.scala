@@ -11,20 +11,20 @@ class HexGridTest extends ScalaCheckSuite {
     }
   }
 
-  property("When adding an existing hex coordinate to a hexagon grid, the value of the added hex coordinate should be kept") {
+  property(
+    "When adding an existing hex coordinate to a hexagon grid, the value of the added hex coordinate should be kept"
+  ) {
     forAll(Generator.hexGridString) { case grid: HexGrid[String] =>
-      val newValue = "new value"
-      val hexOpt = grid.headOption.map(_._1)
+      val newValue   = "new value"
+      val hexOpt     = grid.headOption.map(_._1)
       val hexTileOpt = hexOpt.map(hex => hex -> newValue)
-      val newGrid = grid.withHexes(hexTileOpt.toList*)
+      val newGrid    = grid.withHexes(hexTileOpt.toList*)
 
       hexOpt.flatMap(newGrid.getValue) == hexTileOpt.map(_._2)
       newGrid.getPosition(newValue) == hexOpt
     }
   }
 
-  test("should ") {
-
-  }
+  test("should ") {}
 
 }
