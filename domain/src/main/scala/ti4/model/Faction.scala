@@ -14,6 +14,7 @@ trait Faction {
   def getSpaceCombatStats(ship: Ship): TUnit.Ship.SpaceCombatStats
   def assignHits(numberOfHits: Int, ships: List[Ship]): IO[List[Ship]]
   def isRetreating(tile: TileId, attacker: Fleet, ownShips: List[Ship]): IO[Boolean]
+  def chooseStrategyCard(cards: List[(StrategyCard, Int)]): IO[StrategyCard]
 }
 
 object Faction {
@@ -44,6 +45,10 @@ object Faction {
       }
       override def isRetreating(tile: TileId, attacker: Fleet, ownShips: List[TUnit.Ship]): IO[Boolean] = {
         false.pure[IO]
+      }
+
+      override def chooseStrategyCard(cards: List[(StrategyCard, Int)]): IO[StrategyCard] = {
+        cards.head._1.pure[IO]
       }
     }
   }
