@@ -12,6 +12,11 @@ import ti4.model.Unit.Ship
 import ti4.model.Unit.Ship.SpaceCombatStats
 import ti4.model.GameBoardNotes
 import ti4.model.SystemTile
+import ti4.model.Tile
+
+trait Combat {
+  def resolveSpaceCombat(tile: Tile, attacker: Faction, defender: Faction): IO[Combat.CombatOutcome]
+}
 
 object Combat {
 
@@ -31,48 +36,47 @@ object Combat {
 
   final case class SpaceCombatRoundResult(attacker: Fleet, defender: Fleet)
 
-  def resolveSpaceCombatRound(attacker: Fleet, defender: Fleet): IO[SpaceCombatRoundResult] = {
+  def resolveSpaceCombatRound(random: Random[IO], attacker: Fleet, defender: Fleet): IO[SpaceCombatRoundResult] = {
     for {
-      remainingAttackers <- rollCombat(defender).flatMap(attacker.owner.assignHits(_, attacker.ships))
-      remainingDefenders <- rollCombat(attacker).flatMap(defender.owner.assignHits(_, defender.ships))
+      remainingAttackers <- rollCombat(random, defender).flatMap(attacker.owner.assignHits(_, attacker.ships))
+      remainingDefenders <- rollCombat(random, attacker).flatMap(defender.owner.assignHits(_, defender.ships))
     } yield SpaceCombatRoundResult(
       attacker.copy(ships = remainingAttackers),
       attacker.copy(ships = remainingDefenders),
     )
   }
 
-  private def rollAntiFighterBarrage(fleet: Fleet): IO[Hits] = {
+  private def rollAntiFighterBarrage(random: Random[IO], fleet: Fleet): IO[Hits] = {
     fleet.ships.map { fleet.owner.getSpaceCombatStats }
       .collect { case SpaceCombatStats(Some(antiFighterBarrage), _, _) => antiFighterBarrage }
       .traverse { barrageStats =>
-        rollDice(barrageStats.numberOfDice, barrageStats.threshold)
+        rollDice(random, barrageStats.numberOfDice, barrageStats.threshold)
       }.map(_.sum)
   }
 
-  def antiFighterBarrage(attacker: Fleet, defender: Fleet): IO[SpaceCombatRoundResult] = {
+  def antiFighterBarrage(random: Random[IO], attacker: Fleet, defender: Fleet): IO[SpaceCombatRoundResult] = {
     for {
-      remainingAttackers <- rollAntiFighterBarrage(defender).flatMap(attacker.owner.assignHits(_, attacker.ships))
-      remainingDefenders <- rollAntiFighterBarrage(attacker).flatMap(defender.owner.assignHits(_, defender.ships))
+      remainingAttackers <-
+        rollAntiFighterBarrage(random, defender).flatMap(attacker.owner.assignHits(_, attacker.ships))
+      remainingDefenders <-
+        rollAntiFighterBarrage(random, attacker).flatMap(defender.owner.assignHits(_, defender.ships))
     } yield SpaceCombatRoundResult(
       attacker.copy(ships = remainingAttackers),
       defender.copy(ships = remainingDefenders),
     )
   }
 
-  def rollDice(numberOfDice: Int, threshold: Int): IO[Int] = {
+  def rollDice(random: Random[IO], numberOfDice: Int, threshold: Int): IO[Int] = {
     // TODO instanciate once
-    SecureRandom.javaSecuritySecureRandom[IO].flatMap { random =>
-      List.fill(numberOfDice)(threshold).traverse { threshold =>
-        random.betweenInt(1, 11).map { _ >= threshold }
-      }.map(_.count(identity))
-    }
-
+    List.fill(numberOfDice)(threshold).traverse { threshold =>
+      random.betweenInt(1, 11).map { _ >= threshold }
+    }.map(_.count(identity))
   }
 
-  def rollCombat(fleet: Fleet): IO[Int] = {
+  def rollCombat(random: Random[IO], fleet: Fleet): IO[Int] = {
     fleet.ships.traverse { ship =>
       val stats = fleet.owner.getSpaceCombatStats(ship)
-      rollDice(stats.numberOfDice, stats.threshold)
+      rollDice(random, stats.numberOfDice, stats.threshold)
     }.map(_.sum)
   }
 
@@ -105,6 +109,7 @@ object Combat {
   }
 
   def spaceCombat(
+      random: Random[IO],
       tile: TileId,
       attacker: Fleet,
       defender: Fleet,
@@ -134,8 +139,8 @@ object Combat {
     val continueCombat =
       for {
         declaredRetreat <- wantsToRetreat
-        result <- resolveSpaceCombatRound(attacker, defender).flatMap(result =>
-          spaceCombat(tile, result.attacker, result.defender, declaredRetreat)
+        result <- resolveSpaceCombatRound(random, attacker, defender).flatMap(result =>
+          spaceCombat(random, tile, result.attacker, result.defender, declaredRetreat)
         )
       } yield result
 
@@ -147,9 +152,16 @@ object Combat {
       .getOrElseF(continueCombat)
   }
 
-  def resolveSpaceCombat(tile: TileId, attacker: Fleet, defender: Fleet): IO[CombatOutcome] = {
-    antiFighterBarrage(attacker, defender).flatMap { case SpaceCombatRoundResult(attacker, defender) =>
-      spaceCombat(tile, attacker, defender)
+  def make(random: Random[IO]): Combat = {
+    new Combat {
+      override def resolveSpaceCombat(tile: Tile, attacker: Faction, defender: Faction): IO[CombatOutcome] = {
+        val attackerFleet = Fleet(attacker, tile.ships.filter(_.owningFaction == attacker.id))
+        val defenderFleet = Fleet(defender, tile.ships.filter(_.owningFaction == defender.id))
+        antiFighterBarrage(random, attackerFleet, defenderFleet).flatMap {
+          case SpaceCombatRoundResult(attacker, defender) =>
+            spaceCombat(random, tile.id, attacker, defender)
+        }
+      }
     }
   }
 }
