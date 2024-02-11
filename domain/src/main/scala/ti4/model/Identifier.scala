@@ -7,6 +7,6 @@ object Identifier {
   private val gameNameRegex = "^ti4(-pok)?"
 
   // maybe just do numbers for the id of a setup?
-  private val setupIdRegex = (gameNameRegex ++ "-setup-([0-9]+)$").r
+  private val setupIdRegex = (gameNameRegex ++ "-game-board-setup-([0-9]+)$").r
 
 }

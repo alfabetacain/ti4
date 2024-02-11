@@ -8,10 +8,14 @@ final case class HexGrid[T] private (private val hexByValue: Map[Hex, T]) {
    */
   def withHexes(entries: (Hex, T)*): HexGrid[T] = this.copy(hexByValue = hexByValue ++ entries)
 
-  def getValueAtPosition(hex: Hex): Option[T]      = hexByValue.get(hex)
-  def getThePositionOfValue(value: T): Option[Hex] = valueByHex.get(value)
+  def getValue(hex: Hex): Option[T]      = hexByValue.get(hex)
+  def getPosition(value: T): Option[Hex] = valueByHex.get(value)
 
   def filter(f: ((Hex, T)) => Boolean): HexGrid[T] = this.copy(hexByValue = hexByValue.filter(f))
+
+  def toList: Seq[(Hex, T)] = hexByValue.toList
+
+  def headOption: Option[(Hex, T)] = hexByValue.headOption
 
 }
 
