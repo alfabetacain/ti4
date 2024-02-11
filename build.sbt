@@ -15,9 +15,10 @@ lazy val domain = crossProject(JSPlatform, JVMPlatform)
       "org.typelevel"   %% "cats-effect"      % "3.5.3",
       "dev.optics"     %%% "monocle-core"     % monocleVersion,
       "dev.optics"     %%% "monocle-macro"    % monocleVersion,
+      "co.fs2"         %%% "fs2-core"         % "3.9.4",
       "org.scalameta"  %%% "munit"            % munitVersion % Test,
       "org.scalameta"  %%% "munit-scalacheck" % munitVersion % Test,
-      "org.scalacheck" %%% "scalacheck"       % "1.17.0"     % Test
+      "org.scalacheck" %%% "scalacheck"       % "1.17.0"     % Test,
     )
   )
   .jvmSettings(

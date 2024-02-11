@@ -1,5 +1,6 @@
 package ti4.game
 
+import fs2.Stream
 import ti4.model.Faction
 import cats.effect.IO
 import cats.syntax.all._
@@ -73,7 +74,20 @@ object Loop {
         )
       }
   }
-  private def actionPhase(state: GameState): IO[GameState] = { state.pure[IO] }
+
+  private def takeAction(state: GameState, phaseState: ActionPhase, players: Stream[IO, FactionId]): IO[GameState] = {
+    ???
+  }
+
+  private def actionPhase(state: GameState, phaseState: ActionPhase): IO[GameState] = {
+
+    // consider 3.3.C in living rules
+    val factionsInOrder = phaseState.cards.toList.map {
+      case (faction, cards) => faction -> cards.map(_.initiative).sortBy(identity).head
+    }.map(_._1)
+    fs2.Stream(factionsInOrder: _*).repeat
+    state.pure[IO]
+  }
   private def statusPhase(state: GameState): IO[GameState] = { state.pure[IO] }
   private def agendaPhase(state: GameState): IO[GameState] = { state.pure[IO] }
 
