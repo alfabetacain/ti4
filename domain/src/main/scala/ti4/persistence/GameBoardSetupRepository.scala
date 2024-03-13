@@ -19,5 +19,5 @@ object GameBoardSetupRepository {
 
   // make an API that separates the concern of the API. Save them to a database (file for now or whatever)
   // make a get API for now only. Should be returned by their id/key.
-  
+
 }

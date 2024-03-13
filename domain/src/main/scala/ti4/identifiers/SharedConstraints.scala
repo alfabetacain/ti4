@@ -1,6 +1,6 @@
 package ti4.identifiers
 
-private [identifiers] object SharedConstraints {
+private[identifiers] object SharedConstraints {
 
   /**
    * Current valid game names and their mappings:

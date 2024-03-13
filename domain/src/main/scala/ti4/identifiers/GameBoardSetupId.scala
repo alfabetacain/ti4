@@ -1,6 +1,6 @@
 package ti4.identifiers
 
-import SharedConstraints.{GameNameRegex, PlayerRegex}
+import SharedConstraints.{ GameNameRegex, PlayerRegex }
 
 opaque type GameBoardSetupId = String
 
