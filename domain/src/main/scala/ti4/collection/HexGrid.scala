@@ -25,9 +25,6 @@ object HexGrid {
 
   private def generateRDimension(size: Int, q: Int) = Math.max(-size, -q - size) to Math.min(size, -q + size)
 
-  // That way we can make it possible in the future to make different board layouts
-  // How to make it possible to ask for a specific game board? Should it have an id?
-  // maybe this should just be called grid, since not all grids are hexagonal?
   def generate[T](size: Int, f: Hex => T): HexGrid[T] = {
     val hexes = for {
       q <- -size to size
@@ -37,10 +34,5 @@ object HexGrid {
 
     HexGrid(hexes: _*)
   }
-
-  // this should be how the game board is created
-  // next is to figure out out to show the different options of board layouts
-  // as they are limited. Should it be in an enum? Somewhere else? How to make it dynamic so it can something
-  // we can read in and potentially other people can alter later?
 
 }
