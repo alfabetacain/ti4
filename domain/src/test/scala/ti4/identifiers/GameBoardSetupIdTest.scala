@@ -18,15 +18,42 @@ class GameBoardSetupIdTest extends ScalaCheckSuite {
     }
   }
 
+  test("A partial game board id should be invalid") {
+    val partialId = "ti4-pok-game-board-setup"
+    GameBoardSetupId(partialId).left.map(_.getMessage) == Left(s"$partialId is not a valid game bord setup id")
+  }
+
   property("A valid game board setup id should be parsed") {
     forAll(gameBoardIdGenerator) { validId =>
       GameBoardSetupId(validId).isRight
     }
   }
 
-//  TODO: Add below tests
-//  "A game board setup id should always indicate which board game it belongs to"
-//  "A game board setup id should always indicate the number of players"
-//  "A game board setup id should always end on a number"
+  property("A game board setup id should always indicate which board game it belongs to") {
+    forAll(gameBoardIdGenerator) { id =>
+      val validId = GameBoardSetupId(id).map(_.asString).getOrElse("")
+      SharedConstraints.GameNameRegex.r
+        .findFirstIn(validId)
+        .isDefined
+    }
+  }
+
+  property("A game board setup id should always indicate the number of players") {
+    forAll(gameBoardIdGenerator) { id =>
+      val parsedId = GameBoardSetupId(id).map(_.asString).getOrElse("")
+      SharedConstraints.PlayerRegex.r
+        .findFirstIn(parsedId)
+        .isDefined
+    }
+  }
+
+  property("A game board setup id should always end on a number") {
+    forAll(gameBoardIdGenerator) { id =>
+      val parsedId = GameBoardSetupId(id).map(_.asString).getOrElse("")
+      "-\\d+$".r
+        .findFirstIn(parsedId)
+        .isDefined
+    }
+  }
 
 }
