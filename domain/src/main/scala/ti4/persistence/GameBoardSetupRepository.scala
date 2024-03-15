@@ -4,6 +4,19 @@ import ti4.identifiers.GameBoardSetupId
 
 object GameBoardSetupRepository {
 
+  private val setups = Map(
+    "ti4-game-board-setup-3p-0" -> "",
+    "ti4-game-board-setup-4p-0" -> "",
+    "ti4-game-board-setup-5p-0" -> "",
+    "ti4-game-board-setup-5p-1" -> "",
+    "ti4-game-board-setup-6p-0" -> "",
+    "ti4-game-board-setup-6p-1" -> "",
+    "ti4-game-board-setup-7p-0" -> "",
+    "ti4-game-board-setup-7p-1" -> "",
+    "ti4-game-board-setup-8p-0" -> "",
+    "ti4-game-board-setup-8p-1" -> ""
+  )
+
   def getGameBoardSetup(id: GameBoardSetupId) = ???
 
   //  def threePlayerSetup(): GameBoardSetup = {

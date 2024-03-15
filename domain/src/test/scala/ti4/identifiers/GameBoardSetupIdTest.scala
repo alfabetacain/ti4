@@ -31,7 +31,7 @@ class GameBoardSetupIdTest extends ScalaCheckSuite {
 
   property("A game board setup id should always indicate which board game it belongs to") {
     forAll(gameBoardIdGenerator) { id =>
-      val validId = GameBoardSetupId(id).map(_.asString).getOrElse("")
+      val validId = GameBoardSetupId(id).map(_.value).getOrElse("")
       SharedConstraints.GameNameRegex.r
         .findFirstIn(validId)
         .isDefined
@@ -40,7 +40,7 @@ class GameBoardSetupIdTest extends ScalaCheckSuite {
 
   property("A game board setup id should always indicate the number of players") {
     forAll(gameBoardIdGenerator) { id =>
-      val parsedId = GameBoardSetupId(id).map(_.asString).getOrElse("")
+      val parsedId = GameBoardSetupId(id).map(_.value).getOrElse("")
       SharedConstraints.PlayerRegex.r
         .findFirstIn(parsedId)
         .isDefined
@@ -49,7 +49,7 @@ class GameBoardSetupIdTest extends ScalaCheckSuite {
 
   property("A game board setup id should always end on a number") {
     forAll(gameBoardIdGenerator) { id =>
-      val parsedId = GameBoardSetupId(id).map(_.asString).getOrElse("")
+      val parsedId = GameBoardSetupId(id).map(_.value).getOrElse("")
       "-\\d+$".r
         .findFirstIn(parsedId)
         .isDefined

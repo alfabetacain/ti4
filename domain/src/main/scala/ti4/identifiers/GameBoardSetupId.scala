@@ -18,7 +18,7 @@ object GameBoardSetupId {
 
   implicit class GameBoardSetupIdExtension(id: GameBoardSetupId) {
 
-    def asString: String = id
+    def value: String = id
 
   }
 }
