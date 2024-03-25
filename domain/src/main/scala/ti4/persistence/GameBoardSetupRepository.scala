@@ -24,6 +24,7 @@ object GameBoardSetupRepository {
 //  "ti4-game-board-setup-8p-0"
 //  "ti4-game-board-setup-8p-1"
 
+  // TODO: Make this return a ZIO effect instead.
   def getGameBoardSetup(id: GameBoardSetupId): Option[GameBoardSetup] = setups.get(id)
 
   private def threePlayerSetup(): (GameBoardSetupId, GameBoardSetup) = {

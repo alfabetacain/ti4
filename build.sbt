@@ -25,7 +25,7 @@ lazy val domain = crossProject(JSPlatform, JVMPlatform)
   )
   .jsSettings(
     // Add JS-specific settings here
-    scalaJSUseMainModuleInitializer := true,
+    scalaJSUseMainModuleInitializer := false,
   )
 
 lazy val web = project
@@ -43,7 +43,7 @@ lazy val web = project
     },
     libraryDependencies ++= Seq(
       "org.scala-js"    %%% "scalajs-dom" % "2.4.0",
-      "io.indigoengine" %%% "tyrian-io"   % "0.8.0"
+      "io.indigoengine" %%% "tyrian-io"   % "0.10.0"
     )
   )
 
